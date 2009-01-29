@@ -13,7 +13,7 @@ class CreateSites < ActiveRecord::Migration
 
       t.timestamps 
     end
-    Site.create :title => 'Signal', :require_login_to_post => false
+    Site.create :title => 'Rails Interactive Wiki', :require_login_to_post => false
   end
 
   def self.down
