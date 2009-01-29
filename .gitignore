@@ -13,3 +13,4 @@ public/javascripts/signal.js
 public/stylesheets/signal.css
 .project
 .loadpath
+config/ubistrano
