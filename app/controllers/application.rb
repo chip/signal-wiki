@@ -6,10 +6,20 @@ class ApplicationController < ActionController::Base
   require 'redcloth'
   include AuthenticatedSystem
   include CacheableFlash
-
-  before_filter :find_site
+  
+  before_filter  :restrict
+  before_filter  :find_site
   helper_method  :site
   attr_reader    :site
+  
+  def restrict
+    front = params[:controller] == 'pages' && params[:action] == 'show' && !params[:id]
+    users = params[:controller] == 'users'
+    sessions = params[:controller] == 'sessions'
+    auth = current_user.login == 'kyle' || current_user.login == 'winton' if logged_in?
+    go = front || users || sessions || (logged_in? && auth)
+    redirect_to('/') unless go
+  end
   
   def find_site
     @site ||= Site.find(:first)
