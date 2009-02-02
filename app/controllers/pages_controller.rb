@@ -3,8 +3,8 @@ class PagesController < ApplicationController
   before_filter :login_required, :only => [:destroy]
   before_filter :require_admin, :only => [:lock]
   before_filter :check_private, :only => [:show, :revision]
-  caches_page :show
-  cache_sweeper :page_sweeper, :only => [:create, :update]
+  #caches_page :show
+  #cache_sweeper :page_sweeper, :only => [:create, :update]
   include HTMLDiff
   
   # GET /pages
